@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home - Python App Downloads{% endblock %}
 
@@ -6,21 +7,18 @@
 <!-- The Big Bootstrap Carousel -->
 <section class="hero">
     <div id="carouselExampleDark" class="carousel carousel-dark slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
-      <img src="..." class="d-block w-100" alt="...">
+      <img src="{% static 'images/ZenKid-Main.png' %}" class="d-block w-100" alt="ZenKid Main">
+      <div style="height: 180px;"></div>
       <div class="carousel-caption d-none d-md-block">
         <h5>ZENkid</h5>
         <p>ZENkid is the ultimate tool for enhancing your learning experience.</p>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="..." class="d-block w-100" alt="...">
+      <img src="{% static 'images/ZenKid-Taskmanager.png' %}" class="d-block w-100" alt="ZenKid Taskmanager">
+      <div style="height: 180px;"></div>
       <div class="carousel-caption d-none d-md-block">
         <h5>ZENkid</h5>
         <p>Designed with care, empathy and compassion, For all those who struggle. Whether 
@@ -30,7 +28,8 @@
       </div>
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
+      <img src="{% static 'images/ZenKid-Code.png' %}" class="d-block w-100" alt="ZenKid Code">
+      <div style="height: 180px;"></div>
       <div class="carousel-caption d-none d-md-block">
         <h5>ZENkid</h5>
         <p>Make an account and see for yourself...</p>
@@ -47,14 +46,19 @@
   </button>
 </div>
 </section>
+<div style="height: 50px;"></div>
 <!-- End of bootstrap carousel -->
+
+<div style="display: flex; justify-content: center;">
+<button class="btn-primary" href="{% url 'applications:dashboard' %}">Download</button>
+<h2 style="margin-left: 15px; align-self: center;"><i class="fa-brands fa-windows"></i> Windows</h2>
+</div>
 
 <section class="featured-apps">
     <h2>Featured Applications</h2>
     <div class="app-card">
         <h3>PyQt5 Desktop Application</h3>
         <p>A powerful desktop application built with PyQt5/PySide showcasing GUI development skills.</p>
-        <a href="#">Download</a>
         <span>Version 1.0 | 2.3MB</span>
     </div>
 </section>

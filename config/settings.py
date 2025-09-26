@@ -134,8 +134,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# App-level static files are automatically discovered
-# No need for STATICFILES_DIRS when using app-level organization
+# Static files directories
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Root-level static folder for shared assets
+]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
