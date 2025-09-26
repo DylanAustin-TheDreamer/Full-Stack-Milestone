@@ -1,6 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 def home(request):
     """Homepage view"""
-    return HttpResponse("<h1>Welcome to Your Python App Download Site!</h1><p>Your Django project is working!</p>")
+    context = {
+        'page_title': 'Welcome to Python App Downloads',
+        'featured_apps': [],  # Will be populated later with actual data
+        'recent_reviews': [],  # Will be populated later with actual data
+    }
+    return render(request, 'main/home.html', context)
