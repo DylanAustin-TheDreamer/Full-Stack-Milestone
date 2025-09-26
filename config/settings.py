@@ -134,9 +134,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+# App-level static files are automatically discovered
+# No need for STATICFILES_DIRS when using app-level organization
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
