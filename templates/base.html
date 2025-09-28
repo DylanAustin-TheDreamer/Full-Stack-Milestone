@@ -30,7 +30,7 @@
     <nav id="navbar">
         <a href="{% url 'main:home' %}">Home</a>
         {% if user.is_authenticated %}
-        <span>Welcome, {{ user.username }}</span>
+        <a href="{% url 'main:profile' %}"><span>Account</span></a>
         <a href="{% url 'account_logout' %}">Logout</a>
         {% else %}
         <a href="{% url 'account_login' %}">Login</a>

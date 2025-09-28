@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Profile - ZENkid{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="container-own">
+        <h2>My Profile</h2>
+            <div>
+                <div class="profile-avatar">
+                    <h3><i class="fa-solid fa-user-circle"></i>{{ user.username }}</h3>
+                </div>
+
+
+            <div>
+                {% if user.email %}
+                    <i class="fa-solid fa-envelope"></i><p>{{ user.email }}</p>
+                {% endif %}
+                {% if user.first_name or user.last_name %}
+                    <i class="fa-solid fa-user"></i><p>{{ user.first_name }} {{ user.last_name }}</p>
+                {% endif %}
+                <i class="fa-solid fa-calendar"></i><p>Member since {{ user.date_joined|date:"M Y" }}</p>
+            </div>
+            </div>
+        
+        <div class="profile-actions">
+            <a href="{% url 'account_email' %}" class="btn-primary" style="text-decoration: none;">Manage Email</a>
+            <a href="{% url 'account_change_password' %}" class="btn-primary" style="text-decoration: none;">Change Password</a>
+        </div>
+        
+        <div class="profile-stats">
+            <h4>Account Activity</h4>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fa-solid fa-download"></i>
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Downloads</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fa-solid fa-star"></i>
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Reviews</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="auth-links">
+            <p><a href="{% url 'main:home' %}">Back to Home</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
