@@ -25,7 +25,9 @@
   <body>
     <header>
       <div class="logo">ZENkid</div>
-      <nav id="navbar">
+      <div class="drop" id="dropdown"><i class="fa-solid fa-bars"></i></div>
+    </header>
+    <nav id="navbar">
         <a href="{% url 'main:home' %}">Home</a>
         {% if user.is_authenticated %}
         <span>Welcome, {{ user.username }}</span>
@@ -34,9 +36,7 @@
         <a href="{% url 'account_login' %}">Login</a>
         <a href="{% url 'account_signup' %}">Sign Up</a>
         {% endif %}
-      </nav>
-      <div class="drop" id="dropdown"><i class="fa-solid fa-bars"></i></div>
-    </header>
+    </nav>
 
     <main>
       {% if messages %} {% for message in messages %}
