@@ -1,13 +1,62 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load account %}
 
 {% block title %}Login - ZENkid{% endblock %}
 
 {% block content %}
 
 <div class="auth-container">
-    <div class="auth-card">
+    <div>
+        <h2>Email Addresses</h2>
+        <p>Manage your email addresses associated with your account.</p>
+
+        <div style="background-color: rgb(241, 229, 243); padding: 10px; border-radius: 5px; margin-bottom: 20px;">
         
+        <h3>Current Email Addresses</h3>
+        <ul>
+            {% for email in user.emailaddress_set.all %}
+                <li>
+                    {{ email.email }} 
+                    {% if email.verified %}
+                        (Verified)
+                    {% else %}
+                        (Unverified) - <form method="post" action="{% url 'account_email' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="action_send" value="{{ email.email }}">
+                        <button type="submit" class="btn-small btn-primary">Resend Verification</button>
+                    </form>
+                    {% endif %}
+                    {% if not email.primary %}
+                        <form method="post" action="{% url 'account_email' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="action_primary" value="{{ email.email }}">
+                        <button type="submit" class="btn-small btn-primary">Set as Primary</button>
+                        </form>
+
+                        <form method="post" action="{% url 'account_email' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="action_remove" value="{{ email.email }}">
+                        <button type="submit" class="btn-small btn-primary">Delete</button>
+                        </form>
+                    {% else %}
+                        (Primary)
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>No email addresses associated with this account.</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Add New Email Address</h3>
+        <form method="post" action="{% url 'account_email' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_email">New Email Address:</label>
+                <input type="email" name="action_add" id="id_email" required>
+            </div>
+            <button type="submit" class="btn-primary">Add Email Address</button>
+        </form>
     </div>
 </div>
 {% endblock %}

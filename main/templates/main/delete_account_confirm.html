@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="auth-container">
-    <div class="auth-card">
+    <div>
         <h2><i class="fa-solid fa-triangle-exclamation"></i> Delete Account</h2>
         
         <div class="warning-message">
@@ -28,12 +28,12 @@
         <form method="post" action="{% url 'main:delete_account' %}">
             {% csrf_token %}
             <div class="form-actions">
-                <button type="submit" class="btn-danger">
-                    <i class="fa-solid fa-trash"></i> Yes, Delete My Account
-                </button>
                 <a href="{% url 'main:profile' %}" class="btn-secondary">
                     <i class="fa-solid fa-arrow-left"></i> Cancel
                 </a>
+                <button type="submit" class="btn-danger">
+                    <i class="fa-solid fa-trash"></i> Delete
+                </button>
             </div>
         </form>
         

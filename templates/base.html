@@ -27,7 +27,7 @@
       <div class="logo">ZENkid</div>
       <div class="drop" id="dropdown"><i class="fa-solid fa-bars"></i></div>
     </header>
-    <nav id="navbar">
+    <nav id="navbar" style="text-align: center;">
         <a href="{% url 'main:home' %}">Home</a>
         {% if user.is_authenticated %}
         <a href="{% url 'main:profile' %}"><span>Account</span></a>

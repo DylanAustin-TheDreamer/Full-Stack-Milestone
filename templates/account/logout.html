@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login - ZENkid{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div>
+        <h2>Sign Out</h2>
+        <p>Are you sure you want to sign out?</p>
+        
+        <form method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn-danger">Yes, Sign Out</button>
+            <a href="{% url 'main:profile' %}" class="btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
