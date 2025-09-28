@@ -39,11 +39,14 @@
     </header>
 
     <main>
+      {% if messages %} {% for message in messages %}
       <div class="container-own">
-        {% if messages %} {% for message in messages %}
         <div class="message">{{ message }}</div>
-        {% endfor %} {% endif %} {% block content %}{% endblock %}
       </div>
+      {% endfor %} {% endif %}
+      
+      {% block content %}
+      {% endblock %}
     </main>
 
     <footer>

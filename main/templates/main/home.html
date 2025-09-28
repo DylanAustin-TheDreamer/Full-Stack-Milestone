@@ -5,35 +5,20 @@
 
 {% block content %}
 <!-- The Big Bootstrap Carousel -->
+ <div class="hero">
+  <div class="foot-grid">
+    <div></div>
 <section>
     <div id="carouselExampleDark" class="carousel carousel-dark slide">
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
       <img src="{% static 'images/ZenKid-Main.png' %}" class="d-block w-100" alt="ZenKid Main">
-      <div style="height: 180px;"></div>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>ZENkid</h5>
-        <p>ZENkid is the ultimate tool for enhancing your learning experience.</p>
-      </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
       <img src="{% static 'images/ZenKid-Taskmanager.png' %}" class="d-block w-100" alt="ZenKid Taskmanager">
-      <div style="height: 180px;"></div>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>ZENkid</h5>
-        <p>Designed with care, empathy and compassion, For all those who struggle. Whether 
-            that is with neurodiversity, mental health, or just the stresses of everyday life. And particularly,
-            those with impairments.
-        </p>
-      </div>
     </div>
     <div class="carousel-item">
       <img src="{% static 'images/ZenKid-Code.png' %}" class="d-block w-100" alt="ZenKid Code">
-      <div style="height: 180px;"></div>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>ZENkid</h5>
-        <p>Make an account and see for yourself...</p>
-      </div>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -46,7 +31,8 @@
   </button>
 </div>
 </section>
-<div style="height: 50px;"></div>
+</div>
+</div>
 <!-- End of bootstrap carousel -->
 
 <section>
@@ -57,6 +43,9 @@
 </div>
 </div>
 </section>
+<div style="height: 50px;"></div>
+
+<div class="container-own">
 
 <section class="featured-apps">
     <div class="app-card">
@@ -66,6 +55,8 @@
     </div>
 </section>
 
+<div style="height: 50px;"></div>
+
 <section class="reviews">
     <h2>Recent Reviews</h2>
     <div class="review-card">
@@ -73,4 +64,5 @@
         <span>- Anonymous User</span>
     </div>
 </section>
+</div>
 {% endblock %}
