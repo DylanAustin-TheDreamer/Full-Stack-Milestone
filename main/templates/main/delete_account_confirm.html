@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Delete Account - ZENkid{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h2><i class="fa-solid fa-triangle-exclamation"></i> Delete Account</h2>
+        
+        <div class="warning-message">
+            <p><strong>Warning:</strong> This action cannot be undone!</p>
+            <p>Deleting your account will permanently remove:</p>
+            <ul>
+                <li>Your profile information</li>
+                <li>Your download history</li>
+                <li>Your reviews and ratings</li>
+                <li>Any uploaded content</li>
+            </ul>
+        </div>
+        
+        <div class="account-info">
+            <p><strong>Account to be deleted:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Member since:</strong> {{ user.date_joined|date:"M Y" }}</p>
+        </div>
+        
+        <form method="post" action="{% url 'main:delete_account' %}">
+            {% csrf_token %}
+            <div class="form-actions">
+                <button type="submit" class="btn-danger">
+                    <i class="fa-solid fa-trash"></i> Yes, Delete My Account
+                </button>
+                <a href="{% url 'main:profile' %}" class="btn-secondary">
+                    <i class="fa-solid fa-arrow-left"></i> Cancel
+                </a>
+            </div>
+        </form>
+        
+        <div class="auth-links">
+            <p>Changed your mind? <a href="{% url 'main:profile' %}">Return to Profile</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

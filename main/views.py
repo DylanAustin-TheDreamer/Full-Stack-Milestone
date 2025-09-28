@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.contrib import messages
+from django.views.decorators.http import require_POST
 
 def home(request):
     """Homepage view"""
@@ -17,3 +20,27 @@ def profile(request):
         'user': request.user,
     }
     return render(request, 'main/profile.html', context)
+
+@login_required
+def delete_account_confirm(request):
+    """Show account deletion confirmation page"""
+    return render(request, 'main/delete_account_confirm.html')
+
+@login_required
+@require_POST
+def delete_account(request):
+    """Handle account deletion"""
+    user = request.user
+    username = user.username
+    
+    # Log the user out first
+    logout(request)
+    
+    # Delete the user account
+    user.delete()
+    
+    # Add a success message
+    messages.success(request, f'Account "{username}" has been successfully deleted.')
+    
+    # Redirect to home page
+    return redirect('main:home')

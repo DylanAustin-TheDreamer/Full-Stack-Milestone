@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login - ZENkid{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>Email Confirmed</h2>
+        <p>Your email has been successfully confirmed. You can now log in to your account.</p>
+        <div class="auth-links">
+            <p><a href="{% url 'account_login' %}">Go to Login</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
