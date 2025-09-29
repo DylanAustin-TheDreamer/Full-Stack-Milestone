@@ -22,7 +22,7 @@
 
     {% block extra_css %}{% endblock %}
   </head>
-  <body>
+  <body class="{% block body_class %}{% endblock %}">
     <header>
       <div class="logo">ZENkid</div>
       <div class="drop" id="dropdown"><i class="fa-solid fa-bars"></i></div>
