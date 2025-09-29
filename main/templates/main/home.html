@@ -82,20 +82,23 @@
 
 
 <section class="reviews" style="padding: 15px;">
+  <h2>Recent Reviews</h2>
   {% if recent_reviews %}
   {% for review in recent_reviews %}
   <div style="height: 25px;"></div>
     <div class="review-card">
       <div style="background-color: white; padding: 15px; box-shadow: #292929 0 10px 20px;">
-      <h2 style="text-decoration: underline;">Recent Reviews</h2>
+      <span style="font-weight: bold;">{{ review.author }}</span>
+      <br>
+      <div style="height: 10px;"></div>
       <span>
         <!-- Display stars based on rating number -->
         {% for i in "12345"|slice:":review.rating" %}
-          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star" id="star-review"></i>
         {% endfor %}
       </span>
+      <div style="height: 25px;"></div>
         <p>"{{ review.text }}"</p>
-        <span>- {{ review.author }}</span>
     </div>
     {% endfor %}
     {% else %}
@@ -107,7 +110,8 @@
 </section>
 
 <!-- Add Review Form -->
-<section class="add-review-section">
+ <div style="height: 50px;"></div>
+<section>
   <h3>Leave a Review</h3>
   <form method="post" action="{% url 'main:add_review' %}" class="review-form">
     {% csrf_token %}
