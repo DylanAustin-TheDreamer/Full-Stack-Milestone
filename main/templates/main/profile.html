@@ -9,7 +9,7 @@
         <h2>My Profile</h2>
         {% if user.userprofile.is_premium_member %}
             <button class="btn-secondary" style="background-color: #48c74f; color: white;" >Membership - True</button>
-            <button class="btn-download">Download</button>
+            <a href="{% url 'main:download' %}" class="btn-download">Download</a>
         {% else %}
             <form method="post" action="{% url 'main:toggle_membership' %}">
             {% csrf_token %}

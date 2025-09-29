@@ -14,6 +14,10 @@ def home(request):
     }
     return render(request, 'main/home.html', context)
 
+def download(request):
+    """Download page view"""
+    return render(request, 'main/download.html')
+
 @login_required
 def profile(request):
     """User profile view"""

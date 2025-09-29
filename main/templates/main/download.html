@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Download - ZENkid{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="container-own">
+        <h2>Downloads</h2>
+        <p>Welcome to the download page!</p>
+        
+        {% if user.is_authenticated and user.userprofile.is_premium_member %}
+            <div class="download-section">
+                <h3>Premium Downloads Available</h3>
+                <p>You have access to premium content!</p>
+                <!-- Add your download links here -->
+            </div>
+        {% else %}
+            <div class="membership-required">
+                <h3>Premium Membership Required</h3>
+                <p>You need a premium membership to access downloads.</p>
+                <a href="{% url 'main:profile' %}" class="btn-primary">Upgrade to Premium</a>
+            </div>
+        {% endif %}
+        
+        <div class="auth-links">
+            <p><a href="{% url 'main:home' %}">← Back to Home</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
