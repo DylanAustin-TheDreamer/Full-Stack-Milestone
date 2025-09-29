@@ -3,14 +3,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.views.decorators.http import require_POST
-from .models import UserProfile
+from .models import UserProfile, Review
 
 def home(request):
     """Homepage view"""
     context = {
         'page_title': 'Welcome to Python App Downloads',
         'featured_apps': [],  # Will be populated later with actual data
-        'recent_reviews': [],  # Will be populated later with actual data
+        'recent_reviews': get_recent_reviews(),  # Get real reviews from database
     }
     return render(request, 'main/home.html', context)
 
@@ -62,3 +62,33 @@ def toggle_membership(request):
         profile.is_premium_member = not profile.is_premium_member  # Toggle it
         profile.save()
     return redirect('main:profile')
+
+def get_recent_reviews():
+    # Get the 3 most recent reviews from the database
+    recent_reviews = Review.objects.all().order_by('-id')[:3]
+    return [
+        {
+            'author': review.user, 
+            'text': review.main_content, 
+            'rating': review.rating
+        } 
+        for review in recent_reviews
+    ]
+
+def add_review(request):
+    if request.method == 'POST':
+        author = request.POST.get('author')
+        text = request.POST.get('text')
+        rating = int(request.POST.get('rating', 0))
+        
+        # Save the review to the database
+        review = Review.objects.create(
+            user=author,  # Using the author name as user field
+            main_content=text,
+            rating=rating
+        )
+        
+        messages.success(request, 'Thank you for your review!')
+        return redirect('main:home')
+    else:
+        return redirect('main:home')

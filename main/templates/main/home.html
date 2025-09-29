@@ -81,11 +81,18 @@
 <div style="height: 50px;"></div>
 
 <section class="reviews">
-    <h2>Recent Reviews</h2>
+  <h2>Recent Reviews</h2>
+  {% for review in reviews %}
     <div class="review-card">
-        <p>"Great application! Easy to install and very useful."</p>
-        <span>- Anonymous User</span>
+      <span>
+        {% for i in review.rating %}
+          <i class="fa-solid fa-star"></i>
+        {% endfor %}
+      </span>
+        <p>"{{ review.text }}"</p>
+        <span>- {{ review.author }}</span>
     </div>
+  {% endfor %}
 </section>
 </div>
 {% endblock %}
