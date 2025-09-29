@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.views.decorators.http import require_POST
+from .models import UserProfile
 
 def home(request):
     """Homepage view"""
@@ -16,6 +17,9 @@ def home(request):
 @login_required
 def profile(request):
     """User profile view"""
+    # Get or create the profile if it doesn't exist
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
+    
     context = {
         'user': request.user,
     }
@@ -44,3 +48,13 @@ def delete_account(request):
     
     # Redirect to home page
     return redirect('main:home')
+
+# In your views.py
+@login_required
+def toggle_membership(request):
+    if request.method == 'POST':
+        # Get or create the profile if it doesn't exist
+        profile, created = UserProfile.objects.get_or_create(user=request.user)
+        profile.is_premium_member = not profile.is_premium_member  # Toggle it
+        profile.save()
+    return redirect('main:profile')
