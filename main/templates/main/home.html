@@ -80,19 +80,30 @@
 
 <div style="height: 50px;"></div>
 
-<section class="reviews">
-  <h2>Recent Reviews</h2>
-  {% for review in reviews %}
+
+<section class="reviews" style="padding: 15px;">
+  {% if recent_reviews %}
+  {% for review in recent_reviews %}
+  <div style="height: 25px;"></div>
     <div class="review-card">
+      <div style="background-color: white; padding: 15px; box-shadow: #292929 0 10px 20px;">
+      <h2 style="text-decoration: underline;">Recent Reviews</h2>
       <span>
-        {% for i in review.rating %}
+        <!-- Display stars based on rating number -->
+        {% for i in "12345"|slice:":review.rating" %}
           <i class="fa-solid fa-star"></i>
         {% endfor %}
       </span>
         <p>"{{ review.text }}"</p>
         <span>- {{ review.author }}</span>
     </div>
-  {% endfor %}
+    {% endfor %}
+    {% else %}
+    <div class="review-card">
+        <p>No reviews yet. Be the first to leave a review!</p>
+    </div>
+    {% endif %}
+  </div>
 </section>
 
 <!-- Add Review Form -->
@@ -102,12 +113,16 @@
     {% csrf_token %}
     
     <div class="form-group">
+      {% if user.is_authenticated %}
       <label for="author">Your Name:</label>
-      <input type="text" name="author" id="author" required maxlength="200" 
-             value="{% if user.is_authenticated %}{{ user.username }}{% endif %}"
-             class="form-control">
+        <input type="text" name="author" id="author" required maxlength="200" 
+               value="{{ user.username }}" readonly
+               class="form-control readonly-field">
+      {% else %}
+        <p>Log in to leave a review.</p>
+      {% endif %}
     </div>
-    
+    {% if user.is_authenticated %}
     <div class="form-group">
       <label for="rating">Rating:</label>
       <select name="rating" id="rating" required class="form-control">
@@ -128,6 +143,7 @@
     </div>
     
     <button type="submit" class="btn-primary">Submit Review</button>
+    {% endif %}
   </form>
 </section>
 </div>

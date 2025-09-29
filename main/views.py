@@ -77,7 +77,12 @@ def get_recent_reviews():
 
 def add_review(request):
     if request.method == 'POST':
-        author = request.POST.get('author')
+        # Use logged-in username if available, otherwise use form input
+        if request.user.is_authenticated:
+            author = request.user.username
+        else:
+            author = request.POST.get('author')
+            
         text = request.POST.get('text')
         rating = int(request.POST.get('rating', 0))
         
