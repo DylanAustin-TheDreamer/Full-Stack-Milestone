@@ -18,6 +18,8 @@
             {% for email in user.emailaddress_set.all %}
                 <li>
                     {{ email.email }} 
+                    </li>
+                    </ul>
                     {% if email.verified %}
                         (Verified)
                     {% else %}
@@ -42,7 +44,7 @@
                     {% else %}
                         (Primary)
                     {% endif %}
-                </li>
+        <ul>
             {% empty %}
                 <li>No email addresses associated with this account.</li>
             {% endfor %}
