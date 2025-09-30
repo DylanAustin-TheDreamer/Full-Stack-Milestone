@@ -1,7 +1,23 @@
-from django.urls import path
+from django.urls import path, reverse
 from . import views
+from django.contrib.sitemaps import Sitemap
+from django.contrib.sitemaps.views import sitemap
 
 app_name = 'main'
+
+class StaticViewSitemap(Sitemap):
+    changefreq = "monthly"
+    priority = 1.0
+
+    def items(self):
+        return [
+            'main:home',
+            'main:profile',
+            'main:download',
+        ]
+
+    def location(self, item):
+        return reverse(item)
 
 urlpatterns = [
     path('', views.home, name='home'),

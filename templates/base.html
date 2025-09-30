@@ -3,7 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Python App Downloads{% endblock %}</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>{% block title %}ZENkid - Python Desktop Application Downloads{% endblock %}</title>
+    <meta name="description" content="{% block description %}Download ZENkid, a powerful Python desktop application for enhancing your learning experience. Free educational software with task management and code features.{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}ZENkid, Python app, educational software, desktop application, learning tools, task manager, free download, PyQt5{% endblock %}">
+    <meta name="author" content="ZENkid">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph (Social Media) Tags -->
+    <meta property="og:title" content="{% block og_title %}ZENkid - Python Desktop Application{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Download ZENkid, a powerful Python desktop application for enhancing your learning experience.{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% block og_url %}https://yourdomain.com{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% load static %}{% static 'images/ZenKid-Main.png' %}{% endblock %}">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}ZENkid - Python Desktop Application{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Download ZENkid, a powerful Python desktop application for enhancing your learning experience.{% endblock %}">
 
     <!-- Font Awesome CDN -->
     <link
@@ -19,6 +37,27 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+
+    <!-- Structured Data for SEO -->
+    {% block structured_data %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ZENkid",
+      "description": "A powerful Python desktop application for enhancing your learning experience",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Windows",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "downloadUrl": "{% url 'main:download' %}",
+      "screenshot": "{% load static %}{% static 'images/ZenKid-Main.png' %}"
+    }
+    </script>
+    {% endblock %}
 
     {% block extra_css %}{% endblock %}
   </head>
