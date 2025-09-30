@@ -190,3 +190,42 @@ Procfile.windows
 uploads/
 downloads/
 temp/
+
+# MONETIZATION & API KEYS - NEVER COMMIT THESE!
+# Google AdSense
+adsense_config.py
+adsense_secrets.json
+
+# Google Analytics
+analytics_secrets.json
+google_analytics_key.json
+
+# Affiliate Marketing
+affiliate_config.py
+affiliate_keys.py
+
+# Email Marketing (MailChimp, etc.)
+email_marketing_config.py
+mailchimp_api_key.txt
+
+# Payment Processing (Stripe, PayPal)
+stripe_keys.py
+paypal_config.py
+payment_secrets.json
+
+# API Keys and Secrets
+api_keys.py
+secrets.json
+*.key
+*.pem
+*.p12
+
+# Third-party service configurations
+third_party_config.py
+service_account_key.json
+
+# Ad network configurations
+ad_network_config.py
+
+# Analytics and tracking
+tracking_config.py
