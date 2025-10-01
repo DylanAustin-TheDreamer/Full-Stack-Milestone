@@ -4,6 +4,8 @@ from django.contrib.auth import logout
 from django.contrib import messages
 from django.views.decorators.http import require_POST
 from .models import UserProfile, Review
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     """Homepage view"""
@@ -97,3 +99,17 @@ def add_review(request):
         return redirect('main:home')
     else:
         return redirect('main:home')
+    
+
+@login_required
+def download_app(request):
+    # Check if user has premium membership
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
+    
+    if profile.is_premium_member:
+        # Redirect to Google Drive DIRECT download link
+        download_url = "https://drive.google.com/uc?export=download&id=1sDfG8Q2y221eArnszSyW02-xq_VY_HG1"
+        return HttpResponseRedirect(download_url)
+    else:
+        messages.error(request, "Premium membership required for downloads.")
+        return redirect('main:profile')

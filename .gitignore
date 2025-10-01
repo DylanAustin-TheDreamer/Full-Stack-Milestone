@@ -229,3 +229,12 @@ ad_network_config.py
 
 # Analytics and tracking
 tracking_config.py
+
+# Application files - don't commit these!
+downloads/
+*.exe
+*.msi
+*.dmg
+*.deb
+*.rpm
+application_files/

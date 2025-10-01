@@ -5,28 +5,31 @@
 
 {% block content %}
 <div class="auth-container">
-    <div>
-        <h2>Downloads</h2>
-        <p>Welcome to the download page!</p>
-        <div style="height: 35px"></div>
+  <div>
+    <h2>Downloads</h2>
+    <p>Welcome to the download page!</p>
+    <div style="height: 35px"></div>
+
+    {% if user.is_authenticated and user.userprofile.is_premium_member %}
+      <div class="download-section" style="padding: 15px">
+        <h3>Premium Downloads Available</h3>
+        <p>You have access to premium content!</p>
         
-        {% if user.is_authenticated and user.userprofile.is_premium_member %}
-            <div class="download-section" style="padding: 15px;">
-                <h3>Premium Downloads Available</h3>
-                <p>You have access to premium content!</p>
-                <!-- Add your download links here -->
-            </div>
-        {% else %}
-            <div class="membership-required">
-                <h3>Premium Membership Required</h3>
-                <p>You need a premium membership to access downloads.</p>
-                <a href="{% url 'main:profile' %}" class="btn-primary">Upgrade to Premium</a>
-            </div>
-        {% endif %}
-        
-        <div class="auth-links">
-            <p><a href="{% url 'main:home' %}">← Back to Home</a></p>
-        </div>
+        <a href="{% url 'main:download_app' %}" class="btn-download">
+          <i class="fa-solid fa-download"></i> Download ZENkid App
+        </a>
+      </div>
+    {% else %}
+      <div class="membership-required">
+        <h3>Premium Membership Required</h3>
+        <p>You need a premium membership to access downloads.</p>
+        <a href="{% url 'main:profile' %}" class="btn-primary">Upgrade to Premium</a>
+      </div>
+    {% endif %}
+
+    <div class="auth-links">
+      <p><a href="{% url 'main:home' %}">← Back to Home</a></p>
     </div>
+  </div>
 </div>
 {% endblock %}

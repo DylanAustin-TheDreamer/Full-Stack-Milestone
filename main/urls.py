@@ -26,5 +26,6 @@ urlpatterns = [
     path('delete-account/', views.delete_account, name='delete_account'),
     path('toggle-membership/', views.toggle_membership, name='toggle_membership'),
     path('download/', views.download, name='download'),
+    path('download-app/', views.download_app, name='download_app'),
     path('add-review/', views.add_review, name='add_review'),
 ]
