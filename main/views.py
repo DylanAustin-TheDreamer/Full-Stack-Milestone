@@ -99,6 +99,22 @@ def add_review(request):
         return redirect('main:home')
     else:
         return redirect('main:home')
+
+
+def edit_review(request, review_id):
+    if request.method == 'POST':
+        try:
+            review = Review.objects.get(id=review_id)
+            if request.user.is_authenticated and review.user == request.user.username:
+                review.main_content = request.POST.get('text', review.main_content)
+                review.rating = int(request.POST.get('rating', review.rating))
+                review.save()
+                messages.success(request, 'Your review has been updated.')
+            else:
+                messages.error(request, 'You are not authorized to edit this review.')
+        except Review.DoesNotExist:
+            messages.error(request, 'Review not found.')
+        return redirect('main:home')
     
 
 @login_required
