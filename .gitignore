@@ -33,7 +33,7 @@ media/
 
 # Django Static Files
 staticfiles/
-static/
+# static/  # Commented out - we need the root static folder
 collected-static/
 
 # Environment Variables

@@ -135,10 +135,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Static files directories - commented out since we don't have a root static folder
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",  # Root-level static folder for shared assets
-# ]
+# Static files directories - now including the root static folder
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Root-level static folder for shared assets
+]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
