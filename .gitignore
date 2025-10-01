@@ -32,9 +32,9 @@ db.sqlite3-journal
 media/
 
 # Django Static Files
-staticfiles/
-# static/  # Commented out - we need the root static folder
-collected-static/
+#staticfiles/
+#static/ 
+#collected-static/
 
 # Environment Variables
 .env
