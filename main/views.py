@@ -105,19 +105,33 @@ def add_review(request):
         return redirect('main:home')
 
 
+@login_required
 def edit_review(request, review_id):
-    if request.method == 'POST':
-        try:
-            review = Review.objects.get(id=review_id)
-            if request.user.is_authenticated and review.user == request.user.username:
-                review.main_content = request.POST.get('text', review.main_content)
-                review.rating = int(request.POST.get('rating', review.rating))
-                review.save()
-                messages.success(request, 'Your review has been updated.')
-            else:
-                messages.error(request, 'You are not authorized to edit this review.')
-        except Review.DoesNotExist:
-            messages.error(request, 'Review not found.')
+    """Edit a user's review"""
+    try:
+        review = Review.objects.get(id=review_id)
+        
+        # Check if user owns this review
+        if review.user != request.user.username:
+            messages.error(request, 'You are not authorized to edit this review.')
+            return redirect('main:profile')
+        
+        if request.method == 'POST':
+            # Handle form submission (update the review)
+            review.main_content = request.POST.get('text', review.main_content)
+            review.rating = int(request.POST.get('rating', review.rating))
+            review.save()
+            messages.success(request, 'Your review has been updated.')
+            return redirect('main:profile')
+        else:
+            # Handle GET request (show the edit form)
+            context = {
+                'review': review,
+            }
+            return render(request, 'main/edit_review.html', context)
+            
+    except Review.DoesNotExist:
+        messages.error(request, 'Review not found.')
         return redirect('main:profile')
 
 @login_required

@@ -102,7 +102,7 @@ ZENkid{% endblock %} {% block content %}
               <span>
                 <!-- Display stars based on rating number -->
                 {% for i in "12345"|slice:":review.rating" %}
-                <i class="fa-solid fa-star" id="star-review"></i>
+                <i class="fa-solid fa-star" id="star-review" style="font-size: medium;"></i>
                 {% endfor %}
               </span>
               <div style="height: 25px"></div>
