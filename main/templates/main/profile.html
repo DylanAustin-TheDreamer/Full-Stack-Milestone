@@ -1,69 +1,126 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}My Profile - ZENkid{% endblock %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block title %}My Profile -
+ZENkid{% endblock %} {% block content %}
 <div class="auth-container">
+  <div>
+    <h2>My Profile</h2>
+    {% if user.userprofile.is_premium_member %}
+    <button
+      class="btn-secondary"
+      style="background-color: #48c74f; color: white"
+    >
+      Membership - True
+    </button>
+    <a
+      href="{% url 'main:download' %}"
+      class="btn-download"
+      style="border: #616161 2px solid"
+      >Download</a
+    >
+    {% else %}
+    <form method="post" action="{% url 'main:toggle_membership' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn-secondary">
+        Membership - {{ user.userprofile.is_premium_member|yesno:"True,False" }}
+      </button>
+    </form>
+    {% endif %}
+
+    <div style="height: 50px"></div>
     <div>
-        <h2>My Profile</h2>
-        {% if user.userprofile.is_premium_member %}
-            <button class="btn-secondary" style="background-color: #48c74f; color: white;" >Membership - True</button>
-            <a href="{% url 'main:download' %}" class="btn-download" style="border: #616161 2px solid;">Download</a>
-        {% else %}
-            <form method="post" action="{% url 'main:toggle_membership' %}">
-            {% csrf_token %}
-            <button type="submit" class="btn-secondary">
-                Membership - {{ user.userprofile.is_premium_member|yesno:"True,False" }}
-            </button>
-        </form>
+      <div class="profile-avatar" style="border-bottom: 2px solid #616161">
+        <h3><i class="fa-solid fa-user-circle"></i>{{ user.username }}</h3>
+      </div>
+
+      <div>
+        {% if user.email %}
+        <i class="fa-solid fa-envelope"></i>
+        <p>{{ user.email }}</p>
+        {% endif %} {% if user.first_name or user.last_name %}
+        <i class="fa-solid fa-user"></i>
+        <p>{{ user.first_name }} {{ user.last_name }}</p>
         {% endif %}
-
-        <div style="height: 50px;"></div>
-            <div>
-                <div class="profile-avatar" style="border-bottom: 2px solid #616161;">
-                    <h3><i class="fa-solid fa-user-circle"></i>{{ user.username }}</h3>
-                </div>
-
-
-            <div>
-                {% if user.email %}
-                    <i class="fa-solid fa-envelope"></i><p>{{ user.email }}</p>
-                {% endif %}
-                {% if user.first_name or user.last_name %}
-                    <i class="fa-solid fa-user"></i><p>{{ user.first_name }} {{ user.last_name }}</p>
-                {% endif %}
-                <i class="fa-solid fa-calendar"></i><p>Member since {{ user.date_joined|date:"M Y" }}</p>
-            </div>
-            </div>
-        
-        <div class="profile-actions">
-
-            <a href="{% url 'account_email' %}" class="btn-primary" style="text-decoration: none;">Manage Email</a>
-            <a href="{% url 'account_change_password' %}" class="btn-primary" style="text-decoration: none;">Change Password</a>
-            <a href="{% url 'account_logout' %}" class="btn-primary" style="text-decoration: none;">Log Out</a>
-            <a href="{% url 'main:delete_account_confirm' %}" class="btn-danger" style="text-decoration: none;">Delete Account</a>
-        </div>
-        
-        <div class="profile-stats">
-            <h4>Account Activity</h4>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <i class="fa-solid fa-download"></i>
-                    <span class="stat-number">0</span>
-                    <span class="stat-label">Downloads</span>
-                </div>
-                <div class="stat-item">
-                    <i class="fa-solid fa-star"></i>
-                    <span class="stat-number">0</span>
-                    <span class="stat-label">Reviews</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="auth-links">
-            <p><a href="{% url 'main:home' %}">Back to Home</a></p>
-        </div>
+        <i class="fa-solid fa-calendar"></i>
+        <p>Member since {{ user.date_joined|date:"M Y" }}</p>
+      </div>
     </div>
+
+    <div class="profile-actions">
+      <a
+        href="{% url 'account_email' %}"
+        class="btn-primary"
+        style="text-decoration: none"
+        >Manage Email</a
+      >
+      <a
+        href="{% url 'account_change_password' %}"
+        class="btn-primary"
+        style="text-decoration: none"
+        >Change Password</a
+      >
+      <a
+        href="{% url 'account_logout' %}"
+        class="btn-primary"
+        style="text-decoration: none"
+        >Log Out</a
+      >
+      <a
+        href="{% url 'main:delete_account_confirm' %}"
+        class="btn-danger"
+        style="text-decoration: none"
+        >Delete Account</a
+      >
+    </div>
+
+    <div class="profile-stats">
+      <h4>Account Activity</h4>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <i class="fa-solid fa-download"></i>
+          <span class="stat-number">0</span>
+          <span class="stat-label">Downloads</span>
+        </div>
+
+        
+        <div class="stat-item">
+          <i class="fa-solid fa-star"></i>
+          {% if recent_reviews and review.author == user %}
+          <span class="stat-number">{{ recent_reviews.count }}</span>
+          <span class="stat-label">Reviews</span>
+          {% for review in recent_reviews %}
+          <div style="height: 25px"></div>
+          <div class="review-card">
+            <div
+              style="
+                background-color: white;
+                padding: 15px;
+                box-shadow: #292929 0 10px 20px;
+              "
+            >
+              <span style="font-weight: bold">{{ review.author }}</span>
+              <br />
+              <div style="height: 10px"></div>
+              <span>
+                <!-- Display stars based on rating number -->
+                {% for i in "12345"|slice:":review.rating" %}
+                <i class="fa-solid fa-star" id="star-review"></i>
+                {% endfor %}
+              </span>
+              <div style="height: 25px"></div>
+              <p>"{{ review.text }}"</p>
+            </div>
+            {% endfor %} {% else %}
+            <div class="review-card">
+              <p>No reviews yet. Be the first to leave a review!</p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-links">
+      <p><a href="{% url 'main:home' %}">Back to Home</a></p>
+    </div>
+  </div>
 </div>
 {% endblock %}
