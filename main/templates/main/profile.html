@@ -80,13 +80,13 @@ ZENkid{% endblock %} {% block content %}
           <span class="stat-label">Downloads</span>
         </div>
 
-        
+
         <div class="stat-item">
           <i class="fa-solid fa-star"></i>
-          {% if recent_reviews and review.author == user %}
-          <span class="stat-number">{{ recent_reviews.count }}</span>
+          {% if user_reviews %}
+          <span class="stat-number">{{ user_reviews.count }}</span>
           <span class="stat-label">Reviews</span>
-          {% for review in recent_reviews %}
+          {% for review in user_reviews %}
           <div style="height: 25px"></div>
           <div class="review-card">
             <div
@@ -96,7 +96,7 @@ ZENkid{% endblock %} {% block content %}
                 box-shadow: #292929 0 10px 20px;
               "
             >
-              <span style="font-weight: bold">{{ review.author }}</span>
+              <span style="font-weight: bold">{{ review.user }}</span>
               <br />
               <div style="height: 10px"></div>
               <span>
@@ -106,9 +106,17 @@ ZENkid{% endblock %} {% block content %}
                 {% endfor %}
               </span>
               <div style="height: 25px"></div>
-              <p>"{{ review.text }}"</p>
+              <p>"{{ review.main_content }}"</p>
             </div>
+            <a href="{% url 'main:delete_review' review.id %}" class="btn-danger"
+              >Delete Review</a>
+            <a href="{% url 'main:edit_review' review.id %}" class="btn-primary"
+              >Edit Review</a>
+            
+
             {% endfor %} {% else %}
+            <span class="stat-number">0</span>
+            <span class="stat-label">Reviews</span>
             <div class="review-card">
               <p>No reviews yet. Be the first to leave a review!</p>
             </div>

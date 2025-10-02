@@ -26,8 +26,12 @@ def profile(request):
     # Get or create the profile if it doesn't exist
     profile, created = UserProfile.objects.get_or_create(user=request.user)
     
+    # Get user's reviews
+    user_reviews = Review.objects.filter(user=request.user.username).order_by('-id')
+    
     context = {
         'user': request.user,
+        'user_reviews': user_reviews,
     }
     return render(request, 'main/profile.html', context)
 
@@ -114,7 +118,21 @@ def edit_review(request, review_id):
                 messages.error(request, 'You are not authorized to edit this review.')
         except Review.DoesNotExist:
             messages.error(request, 'Review not found.')
-        return redirect('main:home')
+        return redirect('main:profile')
+
+@login_required
+def delete_review(request, review_id):
+    """Delete a user's review"""
+    try:
+        review = Review.objects.get(id=review_id)
+        if request.user.is_authenticated and review.user == request.user.username:
+            review.delete()
+            messages.success(request, 'Your review has been deleted.')
+        else:
+            messages.error(request, 'You are not authorized to delete this review.')
+    except Review.DoesNotExist:
+        messages.error(request, 'Review not found.')
+    return redirect('main:profile')
     
 
 @login_required

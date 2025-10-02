@@ -28,4 +28,6 @@ urlpatterns = [
     path('download/', views.download, name='download'),
     path('download-app/', views.download_app, name='download_app'),
     path('add-review/', views.add_review, name='add_review'),
+    path('edit-review/<int:review_id>/', views.edit_review, name='edit_review'),
+    path('delete-review/<int:review_id>/', views.delete_review, name='delete_review'),
 ]
