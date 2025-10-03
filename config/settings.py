@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'pineapples')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = False
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'herokuapp.com,127.0.0.1').split(',')
 
 
@@ -155,7 +155,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Allauth settings (Updated to new format)
-ACCOUNT_EMAIL_VERIFICATION = 'optional'  # or 'mandatory', 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # or 'mandatory', 'none'
 
 # New Allauth configuration format
 ACCOUNT_LOGIN_METHODS = ['email']  # Replaces ACCOUNT_AUTHENTICATION_METHOD
