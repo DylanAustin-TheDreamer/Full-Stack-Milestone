@@ -98,9 +98,27 @@
       <div style="height: 10px;"></div>
       <span>
         <!-- Display stars based on rating number -->
-        {% for i in "12345"|slice:":review.rating" %}
+        {% if review.rating == 5 %}
           <i class="fa-solid fa-star" id="star-review"></i>
-        {% endfor %}
+          <i class="fa-solid fa-star" id="star-review"></i>
+          <i class="fa-solid fa-star" id="star-review"></i>
+          <i class="fa-solid fa-star" id="star-review"></i>
+          <i class="fa-solid fa-star" id="star-review"></i>
+        {% elif review.rating == 4 %}
+          <i class="fa-solid fa-star" id="star-review"></i>
+          <i class="fa-solid fa-star" id="star-review"></i>
+          <i class="fa-solid fa-star" id="star-review"></i>
+          <i class="fa-solid fa-star" id="star-review"></i>
+        {% elif review.rating == 3 %}
+          <i class="fa-solid fa-star" id="star-review"></i>
+          <i class="fa-solid fa-star" id="star-review"></i>
+          <i class="fa-solid fa-star" id="star-review"></i>
+        {% elif review.rating == 2 %}
+          <i class="fa-solid fa-star" id="star-review"></i>
+          <i class="fa-solid fa-star" id="star-review"></i>
+        {% elif review.rating == 1 %}
+          <i class="fa-solid fa-star" id="star-review"></i>
+        {% endif %}
       </span>
       <div style="height: 25px;"></div>
         <p>"{{ review.text }}"</p>
