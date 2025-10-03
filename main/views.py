@@ -139,11 +139,16 @@ def delete_review(request, review_id):
     """Delete a user's review"""
     try:
         review = Review.objects.get(id=review_id)
-        if request.user.is_authenticated and review.user == request.user.username:
-            review.delete()
-            messages.success(request, 'Your review has been deleted.')
+
+        if request.method == 'POST':
+            if request.user.is_authenticated and review.user == request.user.username:
+                review.delete()
+                messages.success(request, 'Your review has been deleted.')
         else:
-            messages.error(request, 'You are not authorized to delete this review.')
+            context = {
+                'review': review,
+            }
+            return render(request, 'main/delete_review.html', context)
     except Review.DoesNotExist:
         messages.error(request, 'Review not found.')
     return redirect('main:profile')

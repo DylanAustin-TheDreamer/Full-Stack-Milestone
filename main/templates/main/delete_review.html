@@ -10,7 +10,9 @@ ZENkid{% endblock %} {% block content %}
             <input type="hidden" name="review_id" value="{{ review.id }}">
             <div class="form-group">
                 <button type="submit" class="btn-danger">Confirm Deletion</button>
+                <a href="{% url 'main:profile' %}" class="btn-secondary">Cancel</a>
             </div>
         </form>
     </div>
 </div>
+{% endblock %}
