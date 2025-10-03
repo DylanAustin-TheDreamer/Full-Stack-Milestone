@@ -16,6 +16,13 @@ def home(request):
     }
     return render(request, 'main/home.html', context)
 
+def welcome(request):
+    """Welcome page for new users after signup"""
+    return render(request, 'main/welcome.html', {
+        'page_title': 'Welcome to ZENkid!',
+        'user': request.user
+    })
+
 def download(request):
     """Download page view"""
     return render(request, 'main/download.html')

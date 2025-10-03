@@ -21,6 +21,7 @@ class StaticViewSitemap(Sitemap):
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('welcome/', views.welcome, name='welcome'),
     path('profile/', views.profile, name='profile'),
     path('delete-account/confirm/', views.delete_account_confirm, name='delete_account_confirm'),
     path('delete-account/', views.delete_account, name='delete_account'),

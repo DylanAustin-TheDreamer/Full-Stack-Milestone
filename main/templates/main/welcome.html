@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome to ZENkid{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="welcome-card">
+        <div class="welcome-header">
+            <h1>🎉 Welcome to ZENkid!</h1>
+            {% if user.is_authenticated %}
+                <h2>Hello, {{ user.username }}!</h2>
+            {% endif %}
+        </div>
+        
+        <div class="welcome-content">
+            <div class="welcome-message">
+                <p>Thank you for joining ZENkid! Your account has been successfully created.</p>
+                <p>You're now part of our community of learners and developers.</p>
+            </div>
+            
+            <div class="welcome-features">
+                <h3>What's Next?</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fa-solid fa-user-circle"></i>
+                        <h4>Complete Your Profile</h4>
+                        <p>Set up your profile and explore membership options.</p>
+                        <a href="{% url 'main:profile' %}" class="btn-primary">Go to Profile</a>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <i class="fa-solid fa-download"></i>
+                        <h4>Download ZENkid</h4>
+                        <p>Get access to our powerful learning application.</p>
+                        <a href="{% url 'main:download' %}" class="btn-primary">Download Now</a>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <i class="fa-solid fa-star"></i>
+                        <h4>Leave a Review</h4>
+                        <p>Share your experience with other users.</p>
+                        <a href="{% url 'main:home' %}#reviews" class="btn-secondary">Write Review</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="welcome-footer">
+            <p>Need help getting started? <a href="mailto:info@zenkid.com">Contact our support team</a></p>
+            <a href="{% url 'main:home' %}" class="btn-outline">Continue to Home</a>
+        </div>
+    </div>
+</div>
+
+<style>
+.welcome-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.welcome-header h1 {
+    color: #7b6688;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+
+.welcome-header h2 {
+    color: #666;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.welcome-message {
+    margin: 30px 0;
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.welcome-features h3 {
+    color: #7b6688;
+    margin: 40px 0 20px 0;
+    font-size: 1.5em;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.feature-item {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    border-color: #7b6688;
+    transform: translateY(-5px);
+}
+
+.feature-item i {
+    font-size: 2.5em;
+    color: #7b6688;
+    margin-bottom: 15px;
+}
+
+.feature-item h4 {
+    color: #333;
+    margin: 15px 0 10px 0;
+}
+
+.feature-item p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #7b6688;
+    border: 2px solid #7b6688;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: #7b6688;
+    color: white;
+}
+
+.welcome-footer {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #ddd;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .welcome-card {
+        padding: 20px;
+        margin: 20px;
+    }
+    
+    .welcome-header h1 {
+        font-size: 2em;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+</style>
+{% endblock %}
