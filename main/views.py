@@ -149,6 +149,7 @@ def delete_review(request, review_id):
                 'review': review,
             }
             return render(request, 'main/delete_review.html', context)
+        
     except Review.DoesNotExist:
         messages.error(request, 'Review not found.')
     return redirect('main:profile')
