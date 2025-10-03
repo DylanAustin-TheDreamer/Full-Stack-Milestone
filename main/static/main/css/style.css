@@ -182,6 +182,19 @@ h1 {
     display: block;
 }
 
+/* For pop up messages */
+.messages{
+    max-width: 600px;
+    margin: 20px auto;
+    z-index: 1000;
+}
+.messages .alert{
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+}
 
 
 
