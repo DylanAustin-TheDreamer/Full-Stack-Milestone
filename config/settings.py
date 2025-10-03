@@ -155,7 +155,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Allauth settings (Updated to new format)
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # or 'mandatory', 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # or 'mandatory', 'none'
 
 # New Allauth configuration format
 ACCOUNT_LOGIN_METHODS = ['email']  # Replaces ACCOUNT_AUTHENTICATION_METHOD
