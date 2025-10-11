@@ -1,177 +1,253 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}ZENkid - Download Free Python Educational Desktop Application{% endblock %}
-
-{% block description %}Download ZENkid, a free Python desktop application designed to enhance your learning experience. Features include task management, code editing, and educational tools. Available for Windows.{% endblock %}
-
-{% block keywords %}ZENkid download, Python desktop app, educational software, free learning tools, task manager, code editor, PyQt5 application, Windows software{% endblock %}
-
-{% block body_class %}home-page{% endblock %}
-
+{% extends 'base.html' %} {% load static %} 
+{% block title %}
+ZENkid - Download
+Free Python Educational Desktop Application
+{% endblock %} {% block description %}
+Download ZENkid, a free Python desktop application designed to enhance your
+learning experience. Features include task management, code editing, and
+educational tools. Available for Windows.
+{% endblock %} 
+{% block keywords %}
+ZENkid download, Python desktop app, educational software, free learning
+tools, task manager, code editor, PyQt5 application, Windows software
+{% endblock %} {% block body_class %}home-page{% endblock %} 
 {% block content %}
 <!-- The Big Bootstrap Carousel -->
- <div class="hero">
+<div class="hero">
   <div class="carousel-grid">
-    <div id="card" class="card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(139, 139, 139, 0.8)); padding: 50px; box-shadow: #292929 0 10px 20px; font-weight: bold; font-size: 16px;">
+    <div
+      id="card"
+      class="card"
+      style="
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.9),
+          rgba(139, 139, 139, 0.8)
+        );
+        padding: 50px;
+        box-shadow: #292929 0 10px 20px;
+        font-weight: bold;
+        font-size: 16px;
+      "
+    >
       <h1>ZENkid</h1>
       <p>Your go-to app for enhancing your learning experience!</p>
     </div>
-<section id="carouselSection">
-    <div id="carouselExampleDark" class="carousel carousel-dark slide">
-  <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="10000">
-      <img src="{% static 'images/ZenKid-Main.png' %}" class="d-block w-100" alt="ZenKid Main">
-    </div>
-    <div class="carousel-item" data-bs-interval="2000">
-      <img src="{% static 'images/ZenKid-Taskmanager.png' %}" class="d-block w-100" alt="ZenKid Taskmanager">
-    </div>
-    <div class="carousel-item">
-      <img src="{% static 'images/ZenKid-Code.png' %}" class="d-block w-100" alt="ZenKid Code">
-    </div>
+    <section id="carouselSection">
+      <div id="carouselExampleDark" class="carousel carousel-dark slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img
+              src="{% static 'images/ZenKid-Main.png' %}"
+              class="d-block w-100"
+              alt="ZenKid Main"
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img
+              src="{% static 'images/ZenKid-Taskmanager.png' %}"
+              class="d-block w-100"
+              alt="ZenKid Taskmanager"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="{% static 'images/ZenKid-Code.png' %}"
+              class="d-block w-100"
+              alt="ZenKid Code"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleDark"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleDark"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-</section>
-</div>
 </div>
 <!-- End of bootstrap carousel -->
 
-<section style="background-color: white;">
-<div class="download-section">
-<div style="display: flex; justify-content: center;">
-<a class="btn-download" href="{% url 'main:download' %}" style="border: #616161 2px solid; padding: 15px;">Download</a>
-<h2 style="margin-left: 15px; align-self: center;"><i class="fa-brands fa-windows"></i> Windows</h2>
-</div>
-</div>
-<div style="height: 200px;"></div>
+<section style="background-color: white">
+  <div class="download-section">
+    <div style="display: flex; justify-content: center">
+      <a
+        class="btn-download"
+        href="{% url 'main:download' %}"
+        style="border: #616161 2px solid; padding: 15px"
+        >Download</a
+      >
+      <h2 style="margin-left: 15px; align-self: center">
+        <i class="fa-brands fa-windows"></i> Windows
+      </h2>
+    </div>
+  </div>
+  <div style="height: 200px"></div>
 </section>
-<div style="height: 50px;"></div>
+<div style="height: 50px"></div>
 
 <div class="container-own">
   <section class="featured-apps">
     <div class="app-card">
-        <h3>PyQt5 Desktop Application</h3>
-        <p>A powerful desktop application built with PyQt5/PySide showcasing GUI development skills.</p>
-        <span>Version 1.0 | 2.3MB</span>
-    </div>
-</section>
-
-<div style="height: 45px; border-top: 1px solid #292929;"></div>
-
-  <section id="mobile-carousel">
-    <div class="div-images">
-    <img src="{% static 'images/ZenKid-Main.png' %}" alt="ZenKid Main">
-    <div style="height: 80px;">
-      <p>ZENkid is the ultimate tool for enhancing your learning experience.</p>
-    </div>
-    <img src="{% static 'images/ZenKid-Taskmanager.png' %}" alt="ZenKid Taskmanager">
-    <div style="height: 80px;">
-      <p>ZENkid is made with care, attention to detail, and a passion for education.</p>
-    </div>
-    <img src="{% static 'images/ZenKid-Code.png' %}" alt="ZenKid Code">
-    <div style="height: 80px;">
-      <p>ZENkid is available for download... try it for yourself!</p>
-    </div>
+      <h3>PyQt5 Desktop Application</h3>
+      <p>
+        A powerful desktop application built with PyQt5/PySide showcasing GUI
+        development skills.
+      </p>
+      <span>Version 1.0 | 2.3MB</span>
     </div>
   </section>
 
-<div style="height: 50px;"></div>
+  <div style="height: 45px; border-top: 1px solid #292929"></div>
 
+  <section id="mobile-carousel">
+    <div class="div-images">
+      <img src="{% static 'images/ZenKid-Main.png' %}" alt="ZenKid Main" />
+      <div style="height: 80px">
+        <p>
+          ZENkid is the ultimate tool for enhancing your learning experience.
+        </p>
+      </div>
+      <img
+        src="{% static 'images/ZenKid-Taskmanager.png' %}"
+        alt="ZenKid Taskmanager"
+      />
+      <div style="height: 80px">
+        <p>
+          ZENkid is made with care, attention to detail, and a passion for
+          education.
+        </p>
+      </div>
+      <img src="{% static 'images/ZenKid-Code.png' %}" alt="ZenKid Code" />
+      <div style="height: 80px">
+        <p>ZENkid is available for download... try it for yourself!</p>
+      </div>
+    </div>
+  </section>
 
-<section class="reviews" style="padding: 15px;">
-  <h2>Recent Reviews</h2>
-  {% if recent_reviews %}
-  {% for review in recent_reviews %}
-  <div style="height: 25px;"></div>
+  <div style="height: 50px"></div>
+
+  <section class="reviews" style="padding: 15px">
+    <h2>Recent Reviews</h2>
+    {% if recent_reviews %} {% for review in recent_reviews %}
+    <div style="height: 25px"></div>
     <div class="review-card">
-      <div style="background-color: white; padding: 15px; box-shadow: #292929 0 10px 20px;">
-      <span style="font-weight: bold;">{{ review.author }}</span>
-      <br>
-      <div style="height: 10px;"></div>
-      <span>
-        <!-- Display stars based on rating number -->
-        {% if review.rating == 5 %}
+      <div
+        style="
+          background-color: white;
+          padding: 15px;
+          box-shadow: #292929 0 10px 20px;
+        "
+      >
+        <span style="font-weight: bold">{{ review.author }}</span>
+        <br />
+        <div style="height: 10px"></div>
+        <span>
+          <!-- Display stars based on rating number -->
+          {% if review.rating == 5 %}
           <i class="fa-solid fa-star" id="star-review"></i>
           <i class="fa-solid fa-star" id="star-review"></i>
           <i class="fa-solid fa-star" id="star-review"></i>
           <i class="fa-solid fa-star" id="star-review"></i>
           <i class="fa-solid fa-star" id="star-review"></i>
-        {% elif review.rating == 4 %}
+          {% elif review.rating == 4 %}
           <i class="fa-solid fa-star" id="star-review"></i>
           <i class="fa-solid fa-star" id="star-review"></i>
           <i class="fa-solid fa-star" id="star-review"></i>
           <i class="fa-solid fa-star" id="star-review"></i>
-        {% elif review.rating == 3 %}
+          {% elif review.rating == 3 %}
           <i class="fa-solid fa-star" id="star-review"></i>
           <i class="fa-solid fa-star" id="star-review"></i>
           <i class="fa-solid fa-star" id="star-review"></i>
-        {% elif review.rating == 2 %}
+          {% elif review.rating == 2 %}
           <i class="fa-solid fa-star" id="star-review"></i>
           <i class="fa-solid fa-star" id="star-review"></i>
-        {% elif review.rating == 1 %}
+          {% elif review.rating == 1 %}
           <i class="fa-solid fa-star" id="star-review"></i>
-        {% endif %}
-      </span>
-      <div style="height: 25px;"></div>
+          {% endif %}
+        </span>
+        <div style="height: 25px"></div>
         <p>"{{ review.text }}"</p>
-    </div>
-    {% endfor %}
-    {% else %}
-    <div class="review-card">
+      </div>
+      {% endfor %} {% else %}
+      <div class="review-card">
         <p>No reviews yet. Be the first to leave a review!</p>
-    </div>
-    {% endif %}
-  </div>
-</section>
-
-<!-- Add Review Form -->
- <div style="height: 50px;"></div>
-<section>
-  <h3>Leave a Review</h3>
-  <form method="post" action="{% url 'main:add_review' %}" class="review-form">
-    {% csrf_token %}
-    
-    <div class="form-group">
-      {% if user.is_authenticated %}
-      <label for="author">Your Name:</label>
-        <input type="text" name="author" id="author" required maxlength="200" 
-               value="{{ user.username }}" readonly
-               class="form-control readonly-field">
-      {% else %}
-        <p>Log in to leave a review.</p>
+      </div>
       {% endif %}
     </div>
-    {% if user.is_authenticated %}
-    <div class="form-group">
-      <label for="rating">Rating:</label>
-      <select name="rating" id="rating" required class="form-control">
-        <option value="">Select a rating</option>
-        <option value="5">⭐⭐⭐⭐⭐ (5 stars)</option>
-        <option value="4">⭐⭐⭐⭐ (4 stars)</option>
-        <option value="3">⭐⭐⭐ (3 stars)</option>
-        <option value="2">⭐⭐ (2 stars)</option>
-        <option value="1">⭐ (1 star)</option>
-      </select>
-    </div>
-    
-    <div class="form-group">
-      <label for="text">Your Review:</label>
-      <textarea name="text" id="text" required rows="4" cols="50" 
-                placeholder="Tell us what you think about ZENkid..."
-                class="form-control"></textarea>
-    </div>
-    
-    <button type="submit" class="btn-primary">Submit Review</button>
-    {% endif %}
-  </form>
-</section>
+  </section>
+
+  <!-- Add Review Form -->
+  <div style="height: 50px"></div>
+  <section>
+    <h3>Leave a Review</h3>
+    <form
+      method="post"
+      action="{% url 'main:add_review' %}"
+      class="review-form"
+    >
+      {% csrf_token %}
+
+      <div class="form-group">
+        {% if user.is_authenticated %}
+        <label for="author">Your Name:</label>
+        <input
+          type="text"
+          name="author"
+          id="author"
+          required
+          maxlength="200"
+          value="{{ user.username }}"
+          readonly
+          class="form-control readonly-field"
+        />
+        {% else %}
+        <p>Log in to leave a review.</p>
+        {% endif %}
+      </div>
+      {% if user.is_authenticated %}
+      <div class="form-group">
+        <label for="rating">Rating:</label>
+        <select name="rating" id="rating" required class="form-control">
+          <option value="">Select a rating</option>
+          <option value="5">⭐⭐⭐⭐⭐ (5 stars)</option>
+          <option value="4">⭐⭐⭐⭐ (4 stars)</option>
+          <option value="3">⭐⭐⭐ (3 stars)</option>
+          <option value="2">⭐⭐ (2 stars)</option>
+          <option value="1">⭐ (1 star)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="text">Your Review:</label>
+        <textarea
+          name="text"
+          id="text"
+          required
+          rows="4"
+          cols="50"
+          placeholder="Tell us what you think about ZENkid..."
+          class="form-control"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary">Submit Review</button>
+      {% endif %}
+    </form>
+  </section>
 </div>
 {% endblock %}
