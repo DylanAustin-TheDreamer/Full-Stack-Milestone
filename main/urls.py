@@ -14,6 +14,7 @@ class StaticViewSitemap(Sitemap):
             'main:home',
             'main:profile',
             'main:download',
+            'main:rickroll',
         ]
 
     def location(self, item):
@@ -31,4 +32,5 @@ urlpatterns = [
     path('add-review/', views.add_review, name='add_review'),
     path('edit-review/<int:review_id>/', views.edit_review, name='edit_review'),
     path('delete-review/<int:review_id>/', views.delete_review, name='delete_review'),
+    path('rickroll/', views.rickroll, name='rickroll'),
 ]

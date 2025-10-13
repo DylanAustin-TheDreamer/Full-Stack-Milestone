@@ -30,6 +30,11 @@ def download(request):
 
     return render(request, 'main/download.html')
 
+def rickroll(request):
+    """Rickroll page view"""
+
+    return render(request, 'main/rickroll.html')
+
 @login_required
 def profile(request):
     """User profile view"""
